@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -u | head
+ls -tl | head -n 10
