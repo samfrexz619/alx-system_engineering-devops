@@ -1,2 +1,2 @@
 #!/bin/bash
-sort | uniq -u
+ls -lt | tail -10
