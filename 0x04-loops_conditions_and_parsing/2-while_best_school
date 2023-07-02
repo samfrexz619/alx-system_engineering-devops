@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#a script that uses while loop
+y=1
+while [ $y -le 10 ]
+do
+	echo "Best School"
+	y=$(( y + 1 ))
+done
