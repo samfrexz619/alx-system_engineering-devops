@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#script that prints fizzbuzz
+for idx in {1..100}
+do
+	if [ $((idx % 5)) -eq 0 -a $((idx % 3)) -eq 0 ]
+	then
+		echo "FizzBuzz"
+	elif [ $((idx % 5)) -eq 0 ]
+	then
+		echo "Buzz"
+	elif [ $((idx % 3)) -eq 0 ]
+	then
+		echo "Fizz"
+	else
+		echo "$idx"
+	fi
+done

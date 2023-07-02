@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#script that uses ls
+for idx in *
+do
+	echo "$idx" | cut -f 2- -d '-'
+done
