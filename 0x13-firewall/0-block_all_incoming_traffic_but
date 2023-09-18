@@ -1,0 +1,24 @@
+# Check the status of ufw
+
+sudo ufw status
+
+# If ufw is not active
+sudo ufw enable
+
+# Set the default incoming policy to block all incoming traffic
+sudo ufw default deny incomming
+
+# Set the default outgoing policy to allow  all outgoing traffic
+sudo ufw default allow outgoing
+
+# Allow incoming traffic on TCP ports 22, 443, and 80
+
+sudo ufw allow 22/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 80/tcp
+
+# check that the rules have been added
+
+sudo ufw show added
+
+sudo ufw enable
