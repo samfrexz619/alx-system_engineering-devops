@@ -1,29 +1,29 @@
 #!/usr/bin/python3
-"""Function that queries the Reddit API"""
+"""Function that queries"""
 import re
 import requests
 
 
 def add_title(dictionary, hot_posts):
-    """ Adds item """
+    """ Adds item into"""
     if len(hot_posts) == 0:
         return
 
     title = hot_posts[0]['data']['title'].split()
-    for tit in title:
+    for word in title:
         for key in dictionary.keys():
             c = re.compile("^{}$".format(key), re.I)
-            if c.findall(tit):
+            if c.findall(word):
                 dictionary[key] += 1
     hot_posts.pop(0)
     add_title(dictionary, hot_posts)
 
 
 def recurse(subreddit, dictionary, after=None):
-    """ Queries the API """
-    uagent = 'Mozilla/5.0'
+    """ Queries the Reddit API"""
+    u_agent = 'Mozilla/5.0'
     headers = {
-        'User-Agent': uagent
+        'User-Agent': u_agent
     }
 
     params = {
@@ -49,7 +49,7 @@ def recurse(subreddit, dictionary, after=None):
 
 
 def count_words(subreddit, word_list, dictionary=None):
-    """ function """
+    """Init function"""
     if dictionary is None:
         dictionary = {}
 
@@ -64,3 +64,4 @@ def count_words(subreddit, word_list, dictionary=None):
     for item in sorted_items:
         if item[1] > 0:
             print("{}: {}".format(item[0], item[1]))
+
