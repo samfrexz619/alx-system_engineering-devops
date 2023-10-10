@@ -1,11 +1,14 @@
 #!/usr/bin/python3
-"""Function that queries"""
+"""
+Function that queries the Reddit APt posts
+"""
 import re
 import requests
+import sys
 
 
 def add_title(dictionary, hot_posts):
-    """ Adds item into"""
+    """ Adds item into a list """
     if len(hot_posts) == 0:
         return
 
@@ -20,7 +23,7 @@ def add_title(dictionary, hot_posts):
 
 
 def recurse(subreddit, dictionary, after=None):
-    """ Queries the Reddit API"""
+    """ Queries to Reddit API """
     u_agent = 'Mozilla/5.0'
     headers = {
         'User-Agent': u_agent
@@ -48,20 +51,21 @@ def recurse(subreddit, dictionary, after=None):
     recurse(subreddit, dictionary, after=after)
 
 
-def count_words(subreddit, word_list, dictionary=None):
-    """Init function"""
-    if dictionary is None:
-        dictionary = {}
+def count_words(subreddit, word_list):
+    """ Init function """
+    dictionary = {}
 
     for word in word_list:
-        word = word.lower()
-        if word not in dictionary:
-            dictionary[word] = 0
+        dictionary[word] = 0
 
     recurse(subreddit, dictionary)
 
-    sorted_items = sorted(dictionary.items(), key=lambda kv: (-kv[1], kv[0]))
-    for item in sorted_items:
-        if item[1] > 0:
-            print("{}: {}".format(item[0], item[1]))
+    l = sorted(dictionary.items(), key=lambda kv: kv[1])
+    l.reverse()
 
+    if len(l) != 0:
+        for item in l:
+            if item[1] is not 0:
+                print("{}: {}".format(item[0], item[1]))
+    else:
+        print("")
